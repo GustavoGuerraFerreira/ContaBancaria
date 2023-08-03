@@ -121,8 +121,15 @@ namespace ContaBancaria
 
                         Console.WriteLine("Digite o valor do saque:");
                         double value = double.Parse(Console.ReadLine());
-                        objConta.Sacar(value);
-                        Console.WriteLine("Valor Sacado com sucesso");
+                        bool sacar = objConta.Sacar(value);
+                        if (sacar)
+                        {
+                            Console.WriteLine("Valor Sacado com sucesso");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Saldo não corresponde ao valor do saque");
+                        }
                         break;
                     case "5":
                         Console.WriteLine("Digite o número da conta:");
@@ -163,8 +170,15 @@ namespace ContaBancaria
 
                         Console.WriteLine("Digite o valor da transferência:");
                         double qntd_value = double.Parse(Console.ReadLine());
-                        contaOrigem.Transferir(qntd_value, contaDestino);
-                        Console.WriteLine("Valor transferido com sucesso!");
+                        bool check = contaOrigem.Transferir(qntd_value, contaDestino);
+                        if (check)
+                        {
+                            Console.WriteLine("Valor transferido com sucesso!");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Saldo não corresponde ao valor que deseja transferir");
+                        }
                         break;
                     case "7":
                         Console.WriteLine("Obrigado por usar o simulador de conta bancária. Até logo!");

@@ -19,7 +19,7 @@ namespace ContaBancaria.classes
         }
         public bool Sacar(double value)
         {
-            if (this.Saldo >= value)
+            if (this.Saldo > 0)
             {
                 this.Saldo -= value;
                 return true;
@@ -34,11 +34,17 @@ namespace ContaBancaria.classes
             this.Saldo += value;
         }
 
-        public void Transferir(double value, Conta destino)
+        public bool Transferir(double value, Conta destino)
         {
-            if (this.Sacar(value))
+            if (this.Saldo >= value)
             {
+                this.Saldo -= value;
                 destino.Depositar(value);
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
         public double ConsultarSaldo()
